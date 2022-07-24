@@ -41,7 +41,7 @@ const HomeBody = ({ data, search }) => {
     )
 
     return (
-        <div className='flex flex-row flex-wrap justify-around'>
+        <div className='flex flex-row flex-wrap justify-between'>
             {console.log(searchData)}
             {
                 searchData.map((data) => {
