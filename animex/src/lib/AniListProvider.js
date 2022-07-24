@@ -23,7 +23,7 @@ export default function AnimeListProvider({ children }) {
     }
 
     const init = JSON.parse(localStorage.getItem('fav'))
-    const {favorite, dispatch} = useFavoriteAnime({initVal: init !== undefined ? init : anime})
+    const {favorite, dispatch} = useFavoriteAnime({initVal: init !== undefined ? init : []})
 
     return (
         <AnimeContext.Provider value={{ loading, error, data, favorite, dispatch }}>

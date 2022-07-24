@@ -1,5 +1,7 @@
 import React, { useContext } from 'react'
 import { ACTIONS } from '../app/actions/useFavoriteAnime'
+import { useFavoriteAnime } from '../app/hooks/useFavoriteAnime'
+import { useLocalStorage } from '../app/hooks/useLocalStorage'
 import { AnimeContext } from '../lib/AniListProvider'
 
 export default function AnimeCard({ anime }) {
@@ -21,7 +23,7 @@ export default function AnimeCard({ anime }) {
                 <p className='truncate lg:max-w-md lg:max-h-40'>{anime.description}</p>
                 <div className="card-actions justify-end">
                     {
-                        anime.favorite ?
+                        favorite.includes(anime) ?
                             <button className="btn btn-error" onClick={handleUnFavorite}>Unfavorite</button> :
                             <button className="btn btn-success" onClick={handleFavorite}>Favorite</button>
                     }
