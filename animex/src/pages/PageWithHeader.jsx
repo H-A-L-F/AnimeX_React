@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Header from '../components/Header'
 import { AnimeContext } from '../lib/AniListProvider'
+import DetailPage from './DetailPage'
 import FavoritePage from './FavoritePage'
 import { HomePage } from './HomePage'
 
@@ -16,6 +17,7 @@ export default function PageWithHeader() {
             <Routes>
                 <Route path="favorite" element={<FavoritePage search={search}/>} />
                 <Route path='' element={<HomePage data={animeData} search={search} />} />
+                <Route path=':id' element={<DetailPage />}/>
             </Routes>
         </div>
     )

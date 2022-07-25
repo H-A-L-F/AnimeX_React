@@ -1,6 +1,5 @@
 import { useQuery } from "@apollo/client/react";
 import { createContext } from "react";
-import { useFavoriteAnime } from "../app/hooks/useFavoriteAnime.js";
 import { useLocalStorage } from "../app/hooks/useLocalStorage.js";
 import { GET_ANIME_QUERY } from "./getAnimeQuery.js";
 
