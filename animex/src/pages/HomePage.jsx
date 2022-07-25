@@ -9,7 +9,6 @@ export default function HomePage() {
     const animeData = useContext(AnimeContext)
     const [search, setSearch] = useState("")
 
-
     return (
         <div className="w-full h-full px-8 py-8">
             <Header />
@@ -21,14 +20,19 @@ export default function HomePage() {
 
 const HomeBody = ({ data, search }) => {
     const [searchData, setSearchData] = useState([])
+    const fav = JSON.parse(localStorage.getItem('fav'))
 
     useEffect(() => {
         if (data.data) {
             setSearchData(data.data.Page.media.filter((e) => {
                 if (search) return e.title.romaji.toLowerCase().includes(search.toLowerCase())
-                else return data.data
+                else return data.data.Page.media
             }))
         }
+        // setSearchData(fav.filter((e) => {
+        //     if (search) return e.title.romaji.toLowerCase().includes(search.toLowerCase())
+        //     else return fav
+        // }))
 
     }, [search, data])
 
@@ -42,9 +46,9 @@ const HomeBody = ({ data, search }) => {
 
     return (
         <div className='flex flex-row flex-wrap justify-between'>
-            {console.log(searchData)}
             {
                 searchData.map((data) => {
+                    console.log(searchData)
                     return <AnimeCard anime={data} key={data.id}/>
                 })
             }

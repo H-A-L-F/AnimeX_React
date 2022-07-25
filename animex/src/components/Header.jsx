@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { HiOutlineHeart } from "react-icons/hi";
 import { useLocalStorage } from '../app/hooks/useLocalStorage';
 import { AnimeContext } from '../lib/AniListProvider';
 
 export default function Header() {
-    const {favorite} = useContext(AnimeContext)
+    // const {favorite} = useContext(AnimeContext)
+    const {favorite, setFavorite} = useContext(AnimeContext)
 
     return (
         <div className='flex flex-row justify-between'>

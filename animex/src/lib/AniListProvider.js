@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client/react";
 import { createContext } from "react";
 import { useFavoriteAnime } from "../app/hooks/useFavoriteAnime.js";
+import { useLocalStorage } from "../app/hooks/useLocalStorage.js";
 import { GET_ANIME_QUERY } from "./getAnimeQuery.js";
 
 export const AnimeContext = createContext();
@@ -12,21 +13,33 @@ export default function AnimeListProvider({ children }) {
             perPage: 30
         }
     })
-    let anime = []
+    // const init = JSON.parse(localStorage.getItem('fav'))
 
-    if(data !== undefined) {
-        console.log(data.Page.media)
-        data.Page.media?.forEach(e => {
-            anime.push({...e, favorite: false})
-        })
-        console.log(anime)
-    }
+    // function checkInclude(hay, needle) {
+    //     let flag = false
+    //     hay.forEach(e => {
+    //         if (e.id === needle.id) flag = true
+    //     })
+    //     return flag
+    // }
 
-    const init = JSON.parse(localStorage.getItem('fav'))
-    const {favorite, dispatch} = useFavoriteAnime({initVal: init !== undefined ? init : []})
+    // let animeFav = []
+    // if (data !== undefined) {
+    //     data.Page.media?.forEach(e => {
+    //         animeFav.push({ ...e, favorite: checkInclude(init, e) })
+    //     })
+    //     if(init === undefined) {
+    //         init = animeFav
+    //         localStorage.setItem('fav', JSON.stringify(animeFav))
+    //     }
+    // }
+
+    // const { favorite, dispatch } = useFavoriteAnime({ initVal: init })
+
+    const [favorite, setFavorite] = useLocalStorage("fav", [])
 
     return (
-        <AnimeContext.Provider value={{ loading, error, data, favorite, dispatch }}>
+        <AnimeContext.Provider value={{ loading, error, data, favorite, setFavorite }}>
             {children}
         </AnimeContext.Provider>
     )
