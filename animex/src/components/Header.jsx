@@ -10,14 +10,13 @@ export default function Header({setSearch}) {
     const location = useLocation()
 
     function handleChange(e) {
-        console.log(e.target.value)
         setSearch(e.target.value)
     }
 
     return (
         <div className='flex flex-row justify-between'>
             <div className="form-control grow">
-                <input type="text" placeholder="Search" className="input input-bordered" onChange={handleChange}/>
+                <input type="text" placeholder="Search" className={"input input-bordered"} onChange={handleChange} disabled={location.pathname !== "/" && location.pathname !== "favorite"}/>
             </div>
             <div className='mx-2'></div>
             <label className="btn btn-ghost btn-circle">
