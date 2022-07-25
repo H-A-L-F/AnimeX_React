@@ -1,7 +1,7 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import AnimeListProvider from "./lib/AniListProvider";
-import HomePage from "./pages/HomePage";
+import PageWithHeader from "./pages/PageWithHeader";
 
 function App() {
   const client = new ApolloClient({
@@ -13,9 +13,7 @@ function App() {
     <ApolloProvider client={client}>
       <AnimeListProvider>
         <BrowserRouter>
-          <Routes>
-            <Route index element={<HomePage />} />
-          </Routes>
+          <PageWithHeader />
         </BrowserRouter>
       </AnimeListProvider>
     </ApolloProvider>

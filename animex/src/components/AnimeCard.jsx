@@ -1,6 +1,4 @@
 import React, { useContext } from 'react'
-import { ACTIONS } from '../app/actions/useFavoriteAnime'
-import { useLocalStorage } from '../app/hooks/useLocalStorage'
 import { AnimeContext } from '../lib/AniListProvider'
 
 export default function AnimeCard({ anime }) {

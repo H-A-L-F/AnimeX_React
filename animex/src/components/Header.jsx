@@ -1,23 +1,40 @@
-import React, { useContext, useEffect } from 'react'
-import { HiOutlineHeart } from "react-icons/hi";
-import { useLocalStorage } from '../app/hooks/useLocalStorage';
+import React, { useContext } from 'react'
+import { HiOutlineHeart, HiOutlineHome } from "react-icons/hi";
 import { AnimeContext } from '../lib/AniListProvider';
+import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
-export default function Header() {
+export default function Header({setSearch}) {
     // const {favorite} = useContext(AnimeContext)
-    const {favorite, setFavorite} = useContext(AnimeContext)
+    const { favorite } = useContext(AnimeContext)
+    const location = useLocation()
+
+    function handleChange(e) {
+        console.log(e.target.value)
+        setSearch(e.target.value)
+    }
 
     return (
         <div className='flex flex-row justify-between'>
             <div className="form-control grow">
-                <input type="text" placeholder="Search" className="input input-bordered" />
+                <input type="text" placeholder="Search" className="input input-bordered" onChange={handleChange}/>
             </div>
             <div className='mx-2'></div>
             <label className="btn btn-ghost btn-circle">
-                <div className="indicator">
-                    <HiOutlineHeart size={20} />
-                    <span className="badge badge-sm indicator-item">{favorite.length}</span>
-                </div>
+                {
+                    location.pathname === "/"
+                        ?
+                        <Link to={"/favorite"}>
+                            <div className="indicator">
+                                <HiOutlineHeart size={20} />
+                                <span className="badge badge-sm indicator-item">{favorite.length}</span>
+                            </div>
+                        </Link>
+                        :
+                        <Link to={"/"}>
+                            <HiOutlineHome size={20} />
+                        </Link>
+                }
             </label>
         </div>
     )
